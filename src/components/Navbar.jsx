@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const user = useSelector(store => store.user)
+  console.log(user)
   return (
     <div>
       <div className="navbar bg-base-300">
@@ -11,7 +12,7 @@ const Navbar = () => {
         </div>
         <div className="flex-none gap-2">
           <div className="dropdown dropdown-end mr-5 flex ">
-          <p className='px-4 font-semibold my-auto'>Welcome, {user.firstName}</p>
+          {user && <p className='px-4 font-semibold my-auto'>Welcome, {user.firstName}</p>}
             {
               user && (
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
