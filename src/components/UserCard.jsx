@@ -1,9 +1,27 @@
+import axios from 'axios';
 import React from 'react'
 import { FaChevronCircleRight } from "react-icons/fa";
 import { FaChevronCircleLeft } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import {BASE_URL} from '../utils/constants.'
+import { removeUserFromFeed } from '../utils/store/feedSlice';
 
 const UserCard = ({user}) => {
-    const {firstName,lastName,age,gender,about,photoUrl,skills} = user
+    const {_id,firstName,lastName,age,gender,about,photoUrl,skills} = user
+    const dispatch = useDispatch()
+
+    const handleRequestAction = async (status, userId) => {
+      try {
+        const res = await axios.post(
+          BASE_URL + "/request/send/" + status + "/" + userId,
+          {}, 
+          {withCredentials : true})
+        dispatch(removeUserFromFeed(userId))
+      }
+      catch (err) {
+        console.error(err)
+      }
+    }
   return (
 <div className="card bg-base-300 w-96 shadow-xl">
   <figure>
@@ -26,8 +44,8 @@ const UserCard = ({user}) => {
             ) 
         }
         <div className='flex  gap-7 p-5'>
-            <FaChevronCircleLeft className='text-red-600 text-6xl'/>
-            <FaChevronCircleRight className='text-green-600 text-6xl'/>
+            <FaChevronCircleLeft className='text-red-600 text-6xl' onClick={() => handleRequestAction("ignored" ,_id)}/>
+            <FaChevronCircleRight className='text-green-600 text-6xl' onClick={() => handleRequestAction("interested" , _id)}/>
         </div>
     </div>
   </div>
