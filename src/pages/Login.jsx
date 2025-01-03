@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { addUser } from '../utils/store/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils/constants.'
+import landingImage from '../../public/landing_image.jpg'
 
 const Login = () => {
   const [emailId,setEmailId] = useState('')
@@ -46,8 +47,9 @@ const Login = () => {
     }
   }
   return (
-    <div className='flex justify-center mt-5'>
-      <div className="card bg-base-200 w-96 shadow-xl">
+    <div className='flex justify-evenly mt-10 '>
+      <img src={landingImage} alt="Landing page image" className='w-1/2 rounded-lg '/>
+      <div className="card bg-base-300 w-96 shadow-xl">
         <div className="card-body">
           <h2 className="card-title text-2xl justify-center">{isLoginForm ? "Login" : "Sign Up"}</h2>
           <div className="card-actions justify-center m-4">
