@@ -30,9 +30,15 @@ const Connections = () => {
         <div className="flex flex-wrap justify-center m-5">
         
         {
-            connections.map((connection,index) => (
-                <ConnectionCard user={connection} key={index}/>
-            ))
+            connections.map((connection,index) => {
+                const {_id} = connection
+                return (
+                    <ConnectionCard user={connection} key={_id} />
+                )
+            }
+                
+               
+            )
         }
         </div>
     </>
