@@ -63,7 +63,7 @@ const Chat = () => {
       {
         messages.map((message,index) => {  
           return (
-            <div className="chat chat-start" key={index}>
+            <div className={"chat " + (user.firstName === message.firstName ? "chat-end" : "chat-start")} key={index}>
               <div className="chat-header">
                 {`${message.firstName} ${message.lastName}`}
               //<time className="text-xs opacity-50">2 hours ago</time>
