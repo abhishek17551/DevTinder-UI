@@ -39,7 +39,7 @@ const Chat = () => {
       socket.emit("joinChat", {firstName : user?.firstName, userId, targetUserId})
 
       socket.on("messageReceived", ({firstName,lastName,text}) => {
-        console.log(firstName + " :  " + text);
+        //console.log(firstName + " :  " + text);
         setMessages((messages) => [...messages, {firstName,lastName,text}])
       })
       
